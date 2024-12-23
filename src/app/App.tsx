@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import './App.css';
-import { Test } from 'shared/ui/test';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <Test />
       <h1>Vite + React</h1>
       <div className="card">
         <button
