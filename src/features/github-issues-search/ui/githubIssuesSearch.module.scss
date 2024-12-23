@@ -2,11 +2,15 @@
   @apply flex space-x-4 items-center;
 
   &__input {
-    @apply px-4 py-2 border rounded-md shadow-sm;
+    @apply px-4 py-2 border border-solid border-secondary rounded-md;
     @apply flex-1;
+
+    &:focus {
+    	@apply border border-primary border-solid;
+    }
   }
 
   &__button {
-    @apply px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600;
+    @apply px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 border-none;
   }
 }
