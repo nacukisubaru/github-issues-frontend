@@ -28,13 +28,17 @@ export interface Issue {
 export interface IssuesState {
   issues: Issue[];
   currentIssue: Issue | null;
+  searchData: IssueSearchParams | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
 
-export interface FetchIssuesParams {
+export interface IssueSearchParams {
   user: string;
   repo: string;
+}
+
+export interface FetchIssuesParams extends IssueSearchParams {
   page: number;
 }
 

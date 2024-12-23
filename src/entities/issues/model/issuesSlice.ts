@@ -1,12 +1,13 @@
 /* eslint-disable no-param-reassign */
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchIssue, fetchIssues } from './issuesThunk';
-import { IssuesState } from './types';
+import { IssueSearchParams, IssuesState } from './types';
 
 const initialState: IssuesState = {
   issues: [],
   currentIssue: null,
+  searchData: null,
   status: 'idle',
   error: null,
 };
@@ -14,7 +15,11 @@ const initialState: IssuesState = {
 const issuesSlice = createSlice({
   name: 'issues',
   initialState,
-  reducers: {},
+  reducers: {
+    fillSearchParams: (state, action: PayloadAction<IssueSearchParams>) => {
+      state.searchData = action.payload;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchIssues.pending, (state) => {
@@ -23,7 +28,7 @@ const issuesSlice = createSlice({
       })
       .addCase(fetchIssues.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.issues = action.payload;
+        state.issues = state.issues.concat(action.payload);
       })
       .addCase(fetchIssues.rejected, (state, action) => {
         state.status = 'failed';
@@ -46,3 +51,4 @@ const issuesSlice = createSlice({
 });
 
 export const issuesReducer = issuesSlice.reducer;
+export const { fillSearchParams } = issuesSlice.actions;

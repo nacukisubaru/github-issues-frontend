@@ -1,3 +1,4 @@
+export { fillSearchParams } from './model/issuesSlice';
 export { fetchIssues, fetchIssue } from './model/issuesThunk';
 export { issuesReducer } from './model/issuesSlice';
-export { selectIssues } from './model/selector';
+export { selectIssues, selectIssuesSearchParams } from './model/selector';
