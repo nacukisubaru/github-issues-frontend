@@ -60,7 +60,7 @@ export const thunkAxiosRequest = async ({
       throw new Error('Получен пустой ответ от сервера.');
     }
 
-    delete abortControllers[requestKey]; // Убираем контроллер после завершения запроса.
+    delete abortControllers[requestKey];
     return response.data;
   } catch (error: any) {
     delete abortControllers[requestKey];
