@@ -1,1 +1,1 @@
-export { GithubIssues } from "./githubIssues";
+export { GithubIssues } from './githubIssues';

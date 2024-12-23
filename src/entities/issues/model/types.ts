@@ -27,17 +27,17 @@ export interface Issue {
 
 export interface IssuesState {
   issues: Issue[];
-  currentIssue: Issue | null,
+  currentIssue: Issue | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
 
-export interface FetchIssuesParams { 
-  user: string; 
-  repo: string; 
+export interface FetchIssuesParams {
+  user: string;
+  repo: string;
   page: number;
 }
 
-export interface FetchIssueParams extends FetchIssuesParams { 
+export interface FetchIssueParams extends FetchIssuesParams {
   id: string;
 }

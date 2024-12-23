@@ -9,7 +9,13 @@ interface GithubIssueItemProps {
   author: string;
 }
 
-const GithubIssueItem: React.FC<GithubIssueItemProps> = ({ id, title, status, date, author }) => {
+const GithubIssueItem: React.FC<GithubIssueItemProps> = ({
+  id,
+  title,
+  status,
+  date,
+  author,
+}) => {
   return (
     <div className={styles.issueCard}>
       <div className={styles.issueCard__header}>{title}</div>
