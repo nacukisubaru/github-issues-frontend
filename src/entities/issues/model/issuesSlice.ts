@@ -18,6 +18,9 @@ const issuesSlice = createSlice({
   reducers: {
     fillSearchParams: (state, action: PayloadAction<IssueSearchParams>) => {
       state.searchData = action.payload;
+    },
+    resetIssues: (state) => {
+      state.issues = [];
     }
   },
   extraReducers: (builder) => {
@@ -51,4 +54,4 @@ const issuesSlice = createSlice({
 });
 
 export const issuesReducer = issuesSlice.reducer;
-export const { fillSearchParams } = issuesSlice.actions;
+export const { fillSearchParams, resetIssues } = issuesSlice.actions;

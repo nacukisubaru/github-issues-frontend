@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import GithubIssueItem from '../github-issue-item/githubIssueItem';
 import styles from './githubIssuesList.module.scss';
 import { InView } from 'react-intersection-observer';
+import { FixedSizeList as List } from 'react-window';
 
 export const GithubIssuesList: FC = function GithubIssuesList() {
   const issues = useAppSelector(selectIssues);
@@ -16,31 +17,49 @@ export const GithubIssuesList: FC = function GithubIssuesList() {
       setPage((prevPage) => prevPage + 1);
       dispatch(fetchIssues({ ...searchParams, page: page + 1 }));
     }
-  }
+  };
+
+  // This function renders an individual issue item
+  const renderRow = ({ index, style }: { index: number, style: React.CSSProperties }) => {
+    const issue = issues[index];
+    console.log(`Rendering issue: ${issue.number}`);
+    return (
+      <div className="mb-5" style={style}>
+        <GithubIssueItem
+          id={issue.number}
+          title={issue.title}
+          status={issue.state}
+          date={issue.created_at}
+          author={issue.user.login}
+        />
+      </div>
+    );
+  };
 
   return (
     <div className={styles['issues-list']}>
-      {issues.map((issue) => (
-        <div className='mb-5'>
-          <GithubIssueItem
-            id={issue.number}
-            title={issue.title}
-            status={issue.state}
-            date={issue.created_at}
-            author={issue.user.login}
-          />
-        </div>
-      ))}
       {issues.length > 0 && (
-        <InView
-          as="div"
-          style={{ padding: '2px' }}
-          onChange={(inView, _) =>
-            inView && getNextPage()
-          }
-        />
-      )}
+        <>
+          {/* Virtualized list */}
+          <List
+            height={780} // Height of the container
+            itemCount={issues.length}
+            itemSize={175} // Height of each item
+            width="100%" // Full width
+          >
+            {renderRow}
+          </List>
 
+          {/* Infinite scrolling */}
+          <InView
+            as="div"
+            style={{ padding: '2px' }}
+            onChange={(inView, _) =>
+              inView && getNextPage()
+            }
+          />
+        </>
+      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './githubIssuesSearch.module.scss';
 import { useAddDynamicReducer, useAppDispatch } from 'shared/lib/store';
-import { fetchIssues, fillSearchParams, issuesReducer } from 'entities/issues';
+import { fetchIssues, fillSearchParams, issuesReducer, resetIssues } from 'entities/issues';
 
 type FormData = {
   username: string;
@@ -20,6 +20,7 @@ export const GithubIssuesSearch: FC = function GithubIssuesSearch() {
 
   const onSubmit = async ({ username, repository }: FormData) => {
     await registerReducer('issuesReducer', issuesReducer);
+    await dispatch(resetIssues());
     dispatch(fillSearchParams({ user: username, repo: repository }));
     dispatch(fetchIssues({ user: username, repo: repository, page: 1 }));
   };
