@@ -54,5 +54,5 @@ module.exports = {
         "ExportDeclaration": { "multiline": true, "consistent": true }
       }
     ]
-  }
+  },
 }

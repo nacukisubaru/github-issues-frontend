@@ -1,0 +1,1 @@
+export { thunkAxiosRequest } from './thunkQuery';

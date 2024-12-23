@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { issuesReducer } from 'entities/issues';
 
 export const makeStore = () =>
   configureStore({
-    reducer: {},
+    reducer: {
+      issuesReducer,
+    },
   });
 
 export const store = makeStore();
