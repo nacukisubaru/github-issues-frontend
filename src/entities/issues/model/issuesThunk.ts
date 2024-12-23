@@ -6,7 +6,7 @@ import { loadReducer } from 'shared/lib/store';
 
 export const fetchIssues = createAsyncThunk<Issue[], FetchIssuesParams>(
   'issues/fetchIssues', async (params, { rejectWithValue }) => {
-    await loadReducer('issuesReducer', issuesReducer)
+    //await loadReducer('issuesReducer', issuesReducer)
     return await thunkAxiosRequest({
       path: '/github-issues/issues',
       params,

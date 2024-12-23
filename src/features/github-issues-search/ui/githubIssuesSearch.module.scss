@@ -1,0 +1,12 @@
+.github-issues-search {
+  @apply flex space-x-4 items-center;
+
+  &__input {
+    @apply px-4 py-2 border rounded-md shadow-sm;
+    @apply flex-1;
+  }
+
+  &__button {
+    @apply px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600;
+  }
+}
