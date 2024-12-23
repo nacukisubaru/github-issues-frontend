@@ -27,6 +27,7 @@ export interface Issue {
 
 export interface IssuesState {
   issues: Issue[];
+  currentIssue: Issue | null,
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
@@ -34,5 +35,9 @@ export interface IssuesState {
 export interface FetchIssuesParams { 
   user: string; 
   repo: string; 
-  page: number 
+  page: number;
+}
+
+export interface FetchIssueParams extends FetchIssuesParams { 
+  id: string;
 }
