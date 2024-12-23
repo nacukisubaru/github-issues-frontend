@@ -1,0 +1,27 @@
+.issueCard {
+  @apply bg-white p-4 rounded-lg shadow-md border;
+
+  &__header {
+    @apply text-xl font-semibold text-gray-900 mb-2;
+  }
+
+  &__info {
+    @apply text-sm text-gray-600;
+
+    .info-item {
+      @apply mb-1;
+    }
+  }
+
+  &__status {
+    @apply px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  &__date {
+    @apply text-gray-500 text-sm;
+  }
+
+  &__author {
+    @apply text-blue-600 font-medium;
+  }
+}

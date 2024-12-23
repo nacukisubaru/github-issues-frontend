@@ -8,8 +8,9 @@ export const GithubIssues: FC = function GithubIssues() {
 
   return (
     <>
-      <GithubIssuesSearch />
-
+      <div className="mb-10">
+        <GithubIssuesSearch />
+      </div>
       {loadedReducers.includes('issuesReducer') && (
         <GithubIssuesList />
       )}
