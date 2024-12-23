@@ -5,6 +5,7 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
+	'plugin:prettier/recommended',
     "plugin:react-hooks/recommended",
     "airbnb",
     "airbnb/hooks",
@@ -43,21 +44,5 @@ module.exports = {
     "@typescript-eslint/dot-notation": "error",
     "@typescript-eslint/camelcase": "off",
     "implicit-arrow-linebreak": "off",
-    "@typescript-eslint/naming-convention": [
-      "error",
-      {
-        "selector": "variable",
-        "format": ["camelCase"]
-      },
-      {
-        "selector": "function",
-        "format": ["camelCase"]
-      },
-      {
-        "selector": "parameter",
-        "format": ["camelCase"],
-        "leadingUnderscore": "allow"
-      }
-    ]
   }
 }
