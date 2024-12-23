@@ -44,6 +44,15 @@ module.exports = {
     "@typescript-eslint/dot-notation": "error",
     "@typescript-eslint/camelcase": "off",
     "implicit-arrow-linebreak": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "object-curly-newline": [
+      "error", 
+      {
+        "ObjectExpression": { "multiline": true, "consistent": true },
+        "ObjectPattern": { "multiline": true, "consistent": true },
+        "ImportDeclaration": { "multiline": true, "consistent": true },
+        "ExportDeclaration": { "multiline": true, "consistent": true }
+      }
+    ]
   }
 }
