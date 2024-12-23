@@ -22,7 +22,35 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    /*aliases*/
+    "baseUrl": "src",
+    "paths": {
+      "src/*": [
+        "./src/*"
+      ],
+      "features/*": [
+        "features/*"
+      ],
+      "widgets/*": [
+        "widgets/*"
+      ],
+      "pages/*": [
+        "pages/*"
+      ],
+      "shared/*": [
+        "shared/*"
+      ],
+      "entities/*": [
+        "entities/*"
+      ],
+      "app": [
+        "app/*"
+      ],
+      "assets/*": [
+        "shared/assets/*"
+      ]
+    },
   },
   "include": [
     "src/**/*.ts",
