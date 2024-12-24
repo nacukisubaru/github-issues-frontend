@@ -4,6 +4,7 @@ import { fetchLogs } from 'features/logger/model/logsThunk';
 import { selectLogs } from 'features/logger/model/selector';
 import { InView } from 'react-intersection-observer';
 import { FixedSizeList as List } from 'react-window';
+import { clearLogs } from 'features/logger';
 import { LogsItem } from './logsItem';
 
 export function LogsList() {
@@ -20,6 +21,9 @@ export function LogsList() {
 
   useEffect(() => {
     dispatch(fetchLogs({ page: 1 }));
+    return () => {
+      dispatch(clearLogs());
+    };
   }, [dispatch]);
 
   useEffect(() => {

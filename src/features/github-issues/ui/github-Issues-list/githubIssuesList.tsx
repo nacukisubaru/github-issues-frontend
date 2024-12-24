@@ -1,5 +1,6 @@
 import {
   fetchIssues,
+  resetIssues,
   selectIssues,
   selectIssuesSearchParams,
 } from 'entities/issues';
@@ -23,7 +24,11 @@ export function GithubIssuesList() {
     if (listRef.current) {
       setListHeight(listRef.current.offsetHeight);
     }
-  }, []);
+
+    return () => {
+      dispatch(resetIssues());
+    };
+  }, [dispatch]);
 
   const getNextPage = () => {
     if (searchParams) {
