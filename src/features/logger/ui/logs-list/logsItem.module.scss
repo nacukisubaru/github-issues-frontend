@@ -3,6 +3,15 @@
 
   &__header {
     @apply text-xl font-semibold text-gray-900 mb-2 cursor-pointer;
+    @apply w-[15rem] truncate;
+
+    @screen lg {
+      @apply w-full;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      @apply w-full;
+    }
   }
 
   &:hover {
@@ -27,6 +36,14 @@
 
   &__path {
     @apply text-blue-600 font-medium;
+
+    @screen lg {
+      @apply w-full;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      @apply w-full;
+    }
   }
 
   &__timestamp {

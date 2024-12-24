@@ -13,24 +13,21 @@ interface MenuProps {
 }
 
 export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  }
 
   return (
     <>
-      <button
-        className={styles.menu__toggle}
-        onClick={toggleMobileMenu}
-        aria-label="Toggle Menu"
-        type="button"
-      >
-        ☰
-      </button>
-
       <nav
-        className={`${styles.menu} ${isMobileMenuOpen ? styles.menu_open : ''}`}
+        className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`}
       >
+        <div className={styles.menu__close}>
+          <button onClick={closeMenu}>✖</button>
+        </div>
         <ul className={styles.menu__list}>
           {menuItems.map((item) => (
             <li key={item.id} className={styles.menu__item}>
@@ -39,7 +36,7 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
                 className={({ isActive }) =>
                   `${styles.menu__link} ${isActive ? styles.menu__link_active : ''}`
                 }
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
               </NavLink>
@@ -48,15 +45,26 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
         </ul>
       </nav>
 
-      {isMobileMenuOpen && (
+      {isMenuOpen && (
         <div
           className={styles.menu__overlay}
-          onClick={toggleMobileMenu}
-          onKeyDown={(e) => e.key === 'Escape' && toggleMobileMenu()}
+          onClick={toggleMenu}
+          onKeyDown={(e) => e.key === 'Escape' && toggleMenu()}
           role="button"
           aria-label="Close menu"
           tabIndex={0}
         />
+      )}
+
+      {!isMenuOpen && (
+        <button
+          className={styles.menu__toggle}
+          onClick={toggleMenu}
+          aria-label="Toggle Menu"
+          type="button"
+        >
+          ☰
+        </button>
       )}
     </>
   );

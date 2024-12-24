@@ -18,14 +18,13 @@ export const LogsItem: React.FC<LogsItemProps> = function LogsItem({
 }) {
   return (
     <div className={styles.logCard}>
-      <button
+      <div
         className={styles.logCard__header}
         onClick={onClick}
-        aria-label={`Click to view details of ${method} ${path}`}
       >
         {method}
         {path}
-      </button>
+      </div>
       <div className={styles.logCard__info}>
         <div className="info-item">
           IP:
