@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './menu.module.scss';
 
@@ -18,24 +18,28 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
-  }
+  };
+
+  const navLinkClass = useCallback(
+    (isActive: boolean) =>
+      `${styles.menu__link} ${isActive ? styles.menu__link_active : ''}`,
+    [],
+  );
 
   return (
     <>
-      <nav
-        className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`}
-      >
+      <nav className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`}>
         <div className={styles.menu__close}>
-          <button onClick={closeMenu}>✖</button>
+          <button type="button" onClick={closeMenu}>
+            ✖
+          </button>
         </div>
         <ul className={styles.menu__list}>
           {menuItems.map((item) => (
             <li key={item.id} className={styles.menu__item}>
               <NavLink
                 to={item.path}
-                className={({ isActive }) =>
-                  `${styles.menu__link} ${isActive ? styles.menu__link_active : ''}`
-                }
+                className={({ isActive }) => navLinkClass(isActive)}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

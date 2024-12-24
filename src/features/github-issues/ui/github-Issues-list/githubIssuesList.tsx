@@ -58,7 +58,7 @@ export function GithubIssuesList() {
   };
 
   return (
-    <>
+    <div>
       {issues.length > 0 && (
         <List
           height={780}
@@ -69,6 +69,6 @@ export function GithubIssuesList() {
           {renderRow}
         </List>
       )}
-    </>
+    </div>
   );
 }

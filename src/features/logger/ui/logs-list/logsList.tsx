@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import { fetchLogs } from 'features/logger/model/logsThunk';
 import { selectLogs } from 'features/logger/model/selector';
-import { LogsItem } from './logsItem';
-import { FixedSizeList as List } from 'react-window';
 import { InView } from 'react-intersection-observer';
+import { FixedSizeList as List } from 'react-window';
+import { LogsItem } from './logsItem';
 
 export function LogsList() {
   const logs = useAppSelector(selectLogs);
@@ -20,7 +20,10 @@ export function LogsList() {
     dispatch(fetchLogs({ page: 1 }));
   }, [dispatch]);
 
-  const renderRow = ({ index, style }: {
+  const renderRow = ({
+    index,
+    style,
+  }: {
     index: number;
     style: React.CSSProperties;
   }) => (
@@ -45,17 +48,12 @@ export function LogsList() {
   );
 
   return (
-    <>
+    <div>
       {logs.length > 0 && (
-        <List
-          height={780}
-          itemCount={logs.length}
-          itemSize={200}
-          width="100%"
-        >
+        <List height={780} itemCount={logs.length} itemSize={200} width="100%">
           {renderRow}
         </List>
       )}
-    </>
+    </div>
   );
 }
