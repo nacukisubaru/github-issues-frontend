@@ -28,8 +28,20 @@ export function LogsList() {
 
   useEffect(() => {
     if (listRef.current) {
-      setListHeight(listRef.current.offsetHeight);
+      const resizeObserver = new ResizeObserver((entries) => {
+        entries.forEach((entry) => {
+          setListHeight(entry.contentRect.height);
+        });
+      });
+
+      resizeObserver.observe(listRef.current);
+
+      return () => {
+        resizeObserver.disconnect();
+      };
     }
+
+    return undefined;
   }, []);
 
   const renderRow = ({
