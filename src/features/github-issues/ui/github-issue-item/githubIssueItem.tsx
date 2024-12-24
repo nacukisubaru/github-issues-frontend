@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './githubIssueItem.module.scss';
 
 interface GithubIssueItemProps {
@@ -7,20 +8,16 @@ interface GithubIssueItemProps {
   status: string;
   date: string;
   author: string;
-  onClick?: () => void;
+  redirectLink: string;
 }
 
 export const GithubIssueItem: React.FC<GithubIssueItemProps> =
-  function GithubIssueItem({ id, title, status, date, author, onClick }) {
+  function GithubIssueItem({ id, title, status, date, author, redirectLink }) {
     return (
       <div className={styles.issueCard}>
-        <button
-          className={styles.issueCard__header}
-          onClick={onClick}
-          type="button"
-        >
+        <Link to={redirectLink} className={styles.issueCard__header}>
           {title}
-        </button>
+        </Link>
         <div className={styles.issueCard__info}>
           <div className="info-item">
             Issue ID:
@@ -42,7 +39,3 @@ export const GithubIssueItem: React.FC<GithubIssueItemProps> =
       </div>
     );
   };
-
-GithubIssueItem.defaultProps = {
-  onClick: undefined,
-};

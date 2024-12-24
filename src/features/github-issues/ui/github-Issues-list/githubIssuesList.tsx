@@ -3,11 +3,10 @@ import {
   selectIssues,
   selectIssuesSearchParams,
 } from 'entities/issues';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import { InView } from 'react-intersection-observer';
 import { FixedSizeList as List } from 'react-window';
-import { useNavigate } from 'react-router-dom';
 import styles from './githubIssuesList.module.scss';
 import { GithubIssueItem } from '../github-issue-item/githubIssueItem';
 
@@ -16,7 +15,6 @@ export function GithubIssuesList() {
   const searchParams = useAppSelector(selectIssuesSearchParams);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const [page, setPage] = useState(1);
 
   const getNextPage = () => {
@@ -26,13 +24,11 @@ export function GithubIssuesList() {
     }
   };
 
-  const redirectToDetail = (id: number) => () => {
-    if (searchParams) {
-      navigate(
-        `/issue/${id}/?user=${searchParams?.user}&repo=${searchParams?.repo}`,
-      );
-    }
-  };
+  const getRedirectLink = useCallback(
+    (id: number) =>
+      `/issue/${id}/?user=${searchParams?.user}&repo=${searchParams?.repo}`,
+    [searchParams],
+  );
 
   const renderRow = ({
     index,
@@ -43,14 +39,14 @@ export function GithubIssuesList() {
   }) => {
     const issue = issues[index];
     return (
-      <div className="mb-5" style={style}>
+      <div style={{ ...style, marginBottom: '10px' }}>
         <GithubIssueItem
           id={issue.number}
           title={issue.title}
           status={issue.state}
           date={issue.created_at}
           author={issue.user.login}
-          onClick={redirectToDetail(issue?.number)}
+          redirectLink={getRedirectLink(issue.id)}
         />
       </div>
     );
@@ -63,7 +59,7 @@ export function GithubIssuesList() {
           <List
             height={780}
             itemCount={issues.length}
-            itemSize={175}
+            itemSize={200}
             width="100%"
           >
             {renderRow}
