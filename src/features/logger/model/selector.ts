@@ -10,3 +10,8 @@ export const selectLogs = createSelector(
   selectLogsBase,
   (state: LogsState) => state.logs,
 );
+
+export const selectStatusLogs = createSelector(
+  selectLogsBase,
+  (state: LogsState) => state.status,
+);

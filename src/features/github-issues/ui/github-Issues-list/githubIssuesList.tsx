@@ -35,27 +35,24 @@ export function GithubIssuesList() {
   }: {
     index: number;
     style: React.CSSProperties;
-  }) => {
-    const issue = issues[index];
-    return (
-      <InView
-        as="div"
-        style={{ padding: '2px' }}
-        onChange={(inView, _) => inView && getNextPage()}
-      >
-        <div style={style}>
-          <GithubIssueItem
-            id={issue.number}
-            title={issue.title}
-            status={issue.state}
-            date={issue.created_at}
-            author={issue.user.login}
-            redirectLink={getRedirectLink(issue.number)}
-          />
-        </div>
-      </InView>
-    );
-  };
+  }) => (
+    <InView
+      as="div"
+      style={{ padding: '2px' }}
+      onChange={(inView, _) => inView && getNextPage()}
+    >
+      <div style={style}>
+        <GithubIssueItem
+          id={issues[index].number}
+          title={issues[index].title}
+          status={issues[index].state}
+          date={issues[index].created_at}
+          author={issues[index].user.login}
+          redirectLink={getRedirectLink(issues[index].number)}
+        />
+      </div>
+    </InView>
+  );
 
   return (
     <div>

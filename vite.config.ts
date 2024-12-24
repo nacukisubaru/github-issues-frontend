@@ -16,4 +16,29 @@ export default defineConfig({
       assets: '/src/shared/assets',
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+
+          if (id.includes('src/pages/issues/issues')) {
+            return 'issues';
+          }
+
+          if (id.includes('src/pages/issue-detail/issueDetail')) {
+            return 'issues-detail';
+          }
+
+          if (id.includes('src/pages/logger/logs')) {
+            return 'logs';
+          }
+
+          return null;
+        },
+      },
+    },
+  },
 });
