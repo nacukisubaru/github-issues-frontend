@@ -12,7 +12,7 @@ module.exports = {
     "airbnb-typescript",
     "plugin:import/typescript"
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  ignorePatterns: ["dist", ".eslintrc.cjs", "postcss.config.js", "tailwind.config.js"],
   parser: "@typescript-eslint/parser",
   settings: {
     "import/resolver": {
@@ -27,7 +27,8 @@ module.exports = {
     "project": "./tsconfig.json"
   },
   plugins: [
-    "react-refresh"
+    "react-refresh",
+    "prettier"
   ],
   rules: {
     "react-refresh/only-export-components": [
@@ -42,8 +43,20 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "no-mixed-spaces-and-tabs": "off",
     "@typescript-eslint/dot-notation": "error",
-    "@typescript-eslint/camelcase": "off",
     "implicit-arrow-linebreak": "off",
-    "import/prefer-default-export": "off"
-  }
+    "import/prefer-default-export": "off",
+    "operator-linebreak": ["off"],
+    "@typescript-eslint/indent": "off",
+    'import/no-cycle': 'off',
+    "function-paren-newline": "off",
+    "object-curly-newline": [
+      "error", 
+      {
+        "ObjectExpression": { "multiline": true, "consistent": true },
+        "ObjectPattern": { "multiline": true, "consistent": true },
+        "ImportDeclaration": { "multiline": true, "consistent": true },
+        "ExportDeclaration": { "multiline": true, "consistent": true }
+      }
+    ]
+  },
 }

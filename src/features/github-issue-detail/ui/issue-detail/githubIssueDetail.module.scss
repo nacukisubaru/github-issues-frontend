@@ -1,0 +1,15 @@
+.github-issue-detail {
+  @apply bg-gray-100 p-6 rounded-lg;
+  &__title {
+    @apply text-2xl font-bold mb-2;
+  }
+  &__metadata {
+    @apply text-sm text-gray-500 mb-4 flex justify-between;
+  }
+  &__comment-count {
+    @apply font-semibold;
+  }
+  &__comments {
+    @apply mt-6;
+  }
+}

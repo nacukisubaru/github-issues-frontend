@@ -1,0 +1,1 @@
+export { GithubIssue } from './githubIssue';

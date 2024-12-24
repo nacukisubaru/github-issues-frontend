@@ -1,0 +1,52 @@
+.logCard {
+  @apply bg-white p-4 rounded-lg shadow-md border;
+
+  &__header {
+    @apply text-xl font-semibold text-gray-900 mb-2 cursor-pointer;
+    @apply w-[15rem] truncate;
+
+    @screen lg {
+      @apply w-full;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      @apply w-full;
+    }
+  }
+
+  &:hover {
+    @apply text-primary;
+  }
+
+  &__info {
+    @apply text-sm text-gray-600;
+
+    .info-item {
+      @apply mb-1;
+    }
+  }
+
+  &__ip {
+    @apply text-gray-700 font-medium;
+  }
+
+  &__method {
+    @apply text-green-600 font-medium;
+  }
+
+  &__path {
+    @apply text-blue-600 font-medium;
+
+    @screen lg {
+      @apply w-full;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+      @apply w-full;
+    }
+  }
+
+  &__timestamp {
+    @apply text-gray-500 text-sm;
+  }
+}

@@ -1,0 +1,27 @@
+@use 'tailwindcss/base' as *;
+@use 'tailwindcss/components' as *;
+@use 'tailwindcss/utilities' as *;
+
+:root {
+	--bg-color: #fff;
+	--text-color: #353535;
+	--disable-text-color: #d1d9e0;
+  --primary-text-color: #2d9bf0;
+
+	--primary-button: #2d9bf0;
+	--primary-button-hover: #2889d3;
+
+	--secondary-button: #e6e6e6;
+	--secondary-button-hover: #d3d3d3;
+
+	--preloader-primary: #2d9bf0;
+	--preloader-secondary: #c4c4c4d3;
+
+	--primary-border: #2d9bf0;
+  --secondary-border: #d1d9e0;
+}
+
+body {
+	@apply font-sans text-base text-default bg-background;
+	@apply mr-5 ml-5 mt-5;
+}
