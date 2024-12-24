@@ -24,13 +24,13 @@ export const GithubIssueDetail: FC<GithubIssueDetailProps> =
         <h1 className={styles['github-issue-detail__title']}>{title}</h1>
         <div className={styles['github-issue-detail__metadata']}>
           <span>
-            Opened by
-            {author}
-            on
+            <span className="mr-1">Opened by</span>
+            <span className="mr-1">{author}</span>
+            <span className="mr-1">on</span>
             {new Date(createdAt).toLocaleDateString()}
           </span>
           <span className={styles['github-issue-detail__comment-count']}>
-            {commentCount}
+            <span className="mr-1">{commentCount}</span>
             comments
           </span>
         </div>
