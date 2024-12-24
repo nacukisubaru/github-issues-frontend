@@ -1,6 +1,6 @@
 import { IssueDetail } from 'pages/issue-detail';
 import { Issues } from 'pages/issues';
-import { Logs } from 'pages/logs';
+import { Logs } from 'pages/logger';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 export function AppRouter() {
