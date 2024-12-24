@@ -38,38 +38,36 @@ export function GithubIssuesList() {
   }) => {
     const issue = issues[index];
     return (
-      <div style={style}>
-        <GithubIssueItem
-          id={issue.number}
-          title={issue.title}
-          status={issue.state}
-          date={issue.created_at}
-          author={issue.user.login}
-          redirectLink={getRedirectLink(issue.number)}
-        />
-      </div>
+      <InView
+        as="div"
+        style={{ padding: '2px' }}
+        onChange={(inView, _) => inView && getNextPage()}
+      >
+        <div style={style}>
+          <GithubIssueItem
+            id={issue.number}
+            title={issue.title}
+            status={issue.state}
+            date={issue.created_at}
+            author={issue.user.login}
+            redirectLink={getRedirectLink(issue.number)}
+          />
+        </div>
+      </InView>
     );
   };
 
   return (
     <>
       {issues.length > 0 && (
-        <div>
-          <List
-            height={780}
-            itemCount={issues.length}
-            itemSize={150}
-            width="100%"
-          >
-            {renderRow}
-          </List>
-
-          <InView
-            as="div"
-            style={{ padding: '2px' }}
-            onChange={(inView, _) => inView && getNextPage()}
-          />
-        </div>
+        <List
+          height={780}
+          itemCount={issues.length}
+          itemSize={150}
+          width="100%"
+        >
+          {renderRow}
+        </List>
       )}
     </>
   );

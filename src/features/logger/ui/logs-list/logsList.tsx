@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { InView } from 'react-intersection-observer';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import { fetchLogs } from 'features/logger/model/logsThunk';
 import { selectLogs } from 'features/logger/model/selector';
 import { LogsItem } from './logsItem';
+import { FixedSizeList as List } from 'react-window';
+import { InView } from 'react-intersection-observer';
 
 export function LogsList() {
   const logs = useAppSelector(selectLogs);
@@ -19,25 +20,41 @@ export function LogsList() {
     dispatch(fetchLogs({ page: 1 }));
   }, [dispatch]);
 
+  const renderRow = ({ index, style }: {
+    index: number;
+    style: React.CSSProperties;
+  }) => (
+    <InView
+      as="div"
+      style={style}
+      onChange={(inView, _) => {
+        if (inView && index === logs.length - 1) {
+          getNextPage();
+        }
+      }}
+    >
+      <div className="mb-5">
+        <LogsItem
+          ip={logs[index].ip}
+          method={logs[index].method}
+          path={logs[index].path}
+          timestamp={logs[index].timestamp}
+        />
+      </div>
+    </InView>
+  );
+
   return (
     <>
-      {logs.map((log) => (
-        <div className='mb-5'>
-          <LogsItem
-            ip={log.ip}
-            method={log.method}
-            path={log.path}
-            timestamp={log.timestamp}
-          />
-        </div>
-      ))}
-
       {logs.length > 0 && (
-        <InView
-          as="div"
-          style={{ padding: '2px' }}
-          onChange={(inView, _) => inView && getNextPage()}
-        />
+        <List
+          height={780}
+          itemCount={logs.length}
+          itemSize={200}
+          width="100%"
+        >
+          {renderRow}
+        </List>
       )}
     </>
   );
