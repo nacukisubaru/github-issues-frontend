@@ -7,7 +7,6 @@ import { useCallback, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import { InView } from 'react-intersection-observer';
 import { FixedSizeList as List } from 'react-window';
-import styles from './githubIssuesList.module.scss';
 import { GithubIssueItem } from '../github-issue-item/githubIssueItem';
 
 export function GithubIssuesList() {
@@ -39,7 +38,7 @@ export function GithubIssuesList() {
   }) => {
     const issue = issues[index];
     return (
-      <div style={{ ...style, marginBottom: '10px' }}>
+      <div style={style}>
         <GithubIssueItem
           id={issue.number}
           title={issue.title}
@@ -53,13 +52,13 @@ export function GithubIssuesList() {
   };
 
   return (
-    <div className={styles['issues-list']}>
+    <>
       {issues.length > 0 && (
-        <>
+        <div>
           <List
             height={780}
             itemCount={issues.length}
-            itemSize={200}
+            itemSize={150}
             width="100%"
           >
             {renderRow}
@@ -70,8 +69,8 @@ export function GithubIssuesList() {
             style={{ padding: '2px' }}
             onChange={(inView, _) => inView && getNextPage()}
           />
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 }

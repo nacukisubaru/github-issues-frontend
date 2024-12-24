@@ -16,7 +16,7 @@ export const GithubIssueItem: React.FC<GithubIssueItemProps> =
     return (
       <div className={styles.issueCard}>
         <Link to={redirectLink} className={styles.issueCard__header}>
-          {title}
+          <p className={styles['issueCard__header--text']}>{title}</p>
         </Link>
         <div className={styles.issueCard__info}>
           <div className="info-item">

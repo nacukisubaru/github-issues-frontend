@@ -8,7 +8,7 @@ export const GithubIssues: FC = function GithubIssues() {
 
   return (
     <>
-      <div className="mb-10">
+      <div className="mb-10 sticky">
         <GithubIssuesSearch />
       </div>
       {loadedReducers.includes('issuesReducer') && <GithubIssuesList />}
