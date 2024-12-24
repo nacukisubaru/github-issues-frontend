@@ -43,11 +43,11 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "no-mixed-spaces-and-tabs": "off",
     "@typescript-eslint/dot-notation": "error",
-    "@typescript-eslint/camelcase": "off",
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
     "operator-linebreak": ["off"],
     "@typescript-eslint/indent": "off",
+    'import/no-cycle': 'off',
     "function-paren-newline": "off",
     "object-curly-newline": [
       "error", 
