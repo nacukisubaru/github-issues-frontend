@@ -46,7 +46,7 @@ export function GithubIssuesList() {
           status={issue.state}
           date={issue.created_at}
           author={issue.user.login}
-          redirectLink={getRedirectLink(issue.id)}
+          redirectLink={getRedirectLink(issue.number)}
         />
       </div>
     );
