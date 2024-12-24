@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import { fetchLogs } from 'features/logger/model/logsThunk';
 import { selectLogs } from 'features/logger/model/selector';
@@ -10,6 +10,8 @@ export function LogsList() {
   const logs = useAppSelector(selectLogs);
   const dispatch = useAppDispatch();
   const [page, setPage] = useState(1);
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const [listHeight, setListHeight] = useState<number>(0);
 
   const getNextPage = () => {
     setPage((prevPage) => prevPage + 1);
@@ -19,6 +21,12 @@ export function LogsList() {
   useEffect(() => {
     dispatch(fetchLogs({ page: 1 }));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (listRef.current) {
+      setListHeight(listRef.current.offsetHeight);
+    }
+  }, []);
 
   const renderRow = ({
     index,
@@ -31,7 +39,7 @@ export function LogsList() {
       as="div"
       style={style}
       onChange={(inView, _) => {
-        if (inView && index === logs.length - 1) {
+        if (inView && index === logs.length - 1 && listHeight >= 780) {
           getNextPage();
         }
       }}
@@ -48,7 +56,7 @@ export function LogsList() {
   );
 
   return (
-    <div>
+    <div ref={listRef}>
       {logs.length > 0 && (
         <List height={780} itemCount={logs.length} itemSize={200} width="100%">
           {renderRow}

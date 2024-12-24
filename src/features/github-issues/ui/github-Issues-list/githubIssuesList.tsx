@@ -3,11 +3,10 @@ import {
   selectIssues,
   selectIssuesSearchParams,
 } from 'entities/issues';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import { InView } from 'react-intersection-observer';
 import { FixedSizeList as List } from 'react-window';
-import styles from './githubIssuesList.module.scss';
 import { GithubIssueItem } from '../github-issue-item/githubIssueItem';
 
 export function GithubIssuesList() {
@@ -16,6 +15,15 @@ export function GithubIssuesList() {
 
   const dispatch = useAppDispatch();
   const [page, setPage] = useState(1);
+
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const [listHeight, setListHeight] = useState<number>(0);
+
+  useEffect(() => {
+    if (listRef.current) {
+      setListHeight(listRef.current.offsetHeight);
+    }
+  }, []);
 
   const getNextPage = () => {
     if (searchParams) {
@@ -36,26 +44,33 @@ export function GithubIssuesList() {
   }: {
     index: number;
     style: React.CSSProperties;
-  }) => {
-    const issue = issues[index];
-    return (
-      <div style={{ ...style, marginBottom: '10px' }}>
+  }) => (
+    <InView
+      as="div"
+      style={{ padding: '2px' }}
+      onChange={(inView, _) => {
+        if (inView && index === issues.length - 1 && listHeight >= 780) {
+          getNextPage();
+        }
+      }}
+    >
+      <div style={style}>
         <GithubIssueItem
-          id={issue.number}
-          title={issue.title}
-          status={issue.state}
-          date={issue.created_at}
-          author={issue.user.login}
-          redirectLink={getRedirectLink(issue.number)}
+          id={issues[index].number}
+          title={issues[index].title}
+          status={issues[index].state}
+          date={issues[index].created_at}
+          author={issues[index].user.login}
+          redirectLink={getRedirectLink(issues[index].number)}
         />
       </div>
-    );
-  };
+    </InView>
+  );
 
   return (
-    <div className={styles['issues-list']}>
+    <div>
       {issues.length > 0 && (
-        <div>
+        <div ref={listRef}>
           <List
             height={780}
             itemCount={issues.length}
