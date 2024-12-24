@@ -1,9 +1,11 @@
 import { combineReducers, configureStore, Reducer } from '@reduxjs/toolkit';
 
 import { loadedReducersReducer } from '../model/loadedReducersSlice';
+import { logsReducer } from 'features/logs';
 
 const asyncReducers: Record<string, Reducer> = {
   loadedReducersReducer,
+  logsReducer,
 };
 
 const makeStore = () =>
