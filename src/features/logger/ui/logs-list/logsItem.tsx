@@ -23,17 +23,21 @@ export const LogsItem: React.FC<LogsItemProps> = function LogsItem({
         onClick={onClick}
         aria-label={`Click to view details of ${method} ${path}`}
       >
-        {method} {path}
+        {method}
+        {path}
       </button>
       <div className={styles.logCard__info}>
         <div className="info-item">
-          IP: <span className={styles.logCard__ip}>{ip}</span>
+          IP:
+          <span className={styles.logCard__ip}>{ip}</span>
         </div>
         <div className="info-item">
-          Method: <span className={styles.logCard__method}>{method}</span>
+          Method:
+          <span className={styles.logCard__method}>{method}</span>
         </div>
         <div className="info-item">
-          Path: <span className={styles.logCard__path}>{path}</span>
+          Path:
+          <span className={styles.logCard__path}>{path}</span>
         </div>
         <div className="info-item">
           Timestamp:

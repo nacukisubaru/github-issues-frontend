@@ -17,12 +17,17 @@ export function LogsList() {
 
   useEffect(() => {
     dispatch(fetchLogs({ page: 1 }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
       {logs.map((log) => (
-        <LogsItem {...log} />
+        <LogsItem
+          ip={log.ip}
+          method={log.method}
+          path={log.path}
+          timestamp={log.timestamp}
+        />
       ))}
 
       {logs.length > 0 && (

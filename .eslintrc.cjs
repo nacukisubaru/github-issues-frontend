@@ -47,6 +47,8 @@ module.exports = {
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
     "operator-linebreak": ["off"],
+    "@typescript-eslint/indent": "off",
+    "function-paren-newline": "off",
     "object-curly-newline": [
       "error", 
       {

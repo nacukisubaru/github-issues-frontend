@@ -23,6 +23,7 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
         className={styles.menu__toggle}
         onClick={toggleMobileMenu}
         aria-label="Toggle Menu"
+        type="button"
       >
         ☰
       </button>
@@ -36,9 +37,7 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `${styles.menu__link} ${
-                    isActive ? styles.menu__link_active : ''
-                  }`
+                  `${styles.menu__link} ${isActive ? styles.menu__link_active : ''}`
                 }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -50,10 +49,15 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
       </nav>
 
       {isMobileMenuOpen && (
-        <div className={styles.menu__overlay} onClick={toggleMobileMenu} />
+        <div
+          className={styles.menu__overlay}
+          onClick={toggleMobileMenu}
+          onKeyDown={(e) => e.key === 'Escape' && toggleMobileMenu()}
+          role="button"
+          aria-label="Close menu"
+          tabIndex={0}
+        />
       )}
     </>
   );
 };
-
-export default Menu;
