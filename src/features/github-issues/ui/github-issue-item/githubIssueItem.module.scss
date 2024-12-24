@@ -2,7 +2,11 @@
   @apply bg-white p-4 rounded-lg shadow-md border;
 
   &__header {
-    @apply text-xl font-semibold text-gray-900 mb-2;
+    @apply text-xl font-semibold text-gray-900 mb-2 cursor-pointer;
+  }
+
+  &:hover {
+    @apply text-primary;
   }
 
   &__info {

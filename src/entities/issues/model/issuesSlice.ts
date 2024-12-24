@@ -21,7 +21,7 @@ const issuesSlice = createSlice({
     },
     resetIssues: (state) => {
       state.issues = [];
-    }
+    },
   },
   extraReducers: (builder) => {
     builder

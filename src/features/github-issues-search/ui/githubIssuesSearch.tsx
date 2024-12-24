@@ -2,7 +2,12 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import styles from './githubIssuesSearch.module.scss';
 import { useAddDynamicReducer, useAppDispatch } from 'shared/lib/store';
-import { fetchIssues, fillSearchParams, issuesReducer, resetIssues } from 'entities/issues';
+import {
+  fetchIssues,
+  fillSearchParams,
+  issuesReducer,
+  resetIssues,
+} from 'entities/issues';
 
 type FormData = {
   username: string;

@@ -21,7 +21,8 @@ export default {
       },
       textColor: {
 				default: 'var(--text-color)',
-				disable: 'var(--disable-text-color)'
+				disable: 'var(--disable-text-color)',
+        primary: 'var( --primary-text-color)'
 			},
     },
   },

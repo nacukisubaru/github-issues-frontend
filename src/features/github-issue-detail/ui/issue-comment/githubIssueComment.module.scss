@@ -1,0 +1,21 @@
+.github-issue-comment {
+  @apply flex items-start mb-4;
+  &__avatar {
+    @apply w-10 h-10 rounded-full mr-3;
+  }
+  &__content {
+    @apply bg-white p-4 rounded-lg shadow w-full;
+  }
+  &__header {
+    @apply flex justify-between mb-2;
+  }
+  &__user {
+    @apply font-semibold text-sm;
+  }
+  &__metadata {
+    @apply text-xs text-gray-400;
+  }
+  &__body {
+    @apply text-sm;
+  }
+}

@@ -18,6 +18,5 @@ export const selectIssue = createSelector(
 
 export const selectIssuesSearchParams = createSelector(
   selectIssuesBase,
-  (state: IssuesState) => state.searchData
+  (state: IssuesState) => state.searchData,
 );
-

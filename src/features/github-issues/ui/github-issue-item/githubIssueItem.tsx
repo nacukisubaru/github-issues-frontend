@@ -7,6 +7,7 @@ interface GithubIssueItemProps {
   status: string;
   date: string;
   author: string;
+  onClick?: () => void;
 }
 
 const GithubIssueItem: React.FC<GithubIssueItemProps> = ({
@@ -15,10 +16,13 @@ const GithubIssueItem: React.FC<GithubIssueItemProps> = ({
   status,
   date,
   author,
+  onClick,
 }) => {
   return (
     <div className={styles.issueCard}>
-      <div className={styles.issueCard__header}>{title}</div>
+      <a className={styles.issueCard__header} onClick={onClick}>
+        {title}
+      </a>
       <div className={styles.issueCard__info}>
         <div className="info-item">Issue ID: {id}</div>
         <div className="info-item">

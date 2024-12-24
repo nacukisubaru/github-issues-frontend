@@ -20,9 +20,17 @@ export interface Issue {
   user: User;
   state: string;
   comments: number;
+  commentsList: Comment[];
   created_at: string;
   updated_at: string;
   body?: string;
+}
+
+export interface Comment {
+  id: number;
+  user: User;
+  body: string;
+  created_at: string;
 }
 
 export interface IssuesState {
@@ -42,6 +50,6 @@ export interface FetchIssuesParams extends IssueSearchParams {
   page: number;
 }
 
-export interface FetchIssueParams extends FetchIssuesParams {
+export interface FetchIssueParams extends IssueSearchParams {
   id: string;
 }

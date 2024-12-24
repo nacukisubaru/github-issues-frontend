@@ -1,15 +1,22 @@
-import { fetchIssues, selectIssues, selectIssuesSearchParams } from 'entities/issues';
-import { FC, useState } from 'react';
+import {
+  fetchIssues,
+  selectIssues,
+  selectIssuesSearchParams,
+} from 'entities/issues';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import GithubIssueItem from '../github-issue-item/githubIssueItem';
 import styles from './githubIssuesList.module.scss';
 import { InView } from 'react-intersection-observer';
 import { FixedSizeList as List } from 'react-window';
+import { useNavigate } from 'react-router-dom';
 
-export const GithubIssuesList: FC = function GithubIssuesList() {
+export function GithubIssuesList() {
   const issues = useAppSelector(selectIssues);
   const searchParams = useAppSelector(selectIssuesSearchParams);
+
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
 
   const getNextPage = () => {
@@ -19,8 +26,21 @@ export const GithubIssuesList: FC = function GithubIssuesList() {
     }
   };
 
-  // This function renders an individual issue item
-  const renderRow = ({ index, style }: { index: number, style: React.CSSProperties }) => {
+  const redirectToDetail = (id: number) => () => {
+    if (searchParams) {
+      navigate(
+        `/issue/${id}/?user=${searchParams?.user}&repo=${searchParams?.repo}`,
+      );
+    }
+  };
+
+  const renderRow = ({
+    index,
+    style,
+  }: {
+    index: number;
+    style: React.CSSProperties;
+  }) => {
     const issue = issues[index];
     console.log(`Rendering issue: ${issue.number}`);
     return (
@@ -31,6 +51,7 @@ export const GithubIssuesList: FC = function GithubIssuesList() {
           status={issue.state}
           date={issue.created_at}
           author={issue.user.login}
+          onClick={redirectToDetail(issue?.number)}
         />
       </div>
     );
@@ -40,26 +61,22 @@ export const GithubIssuesList: FC = function GithubIssuesList() {
     <div className={styles['issues-list']}>
       {issues.length > 0 && (
         <>
-          {/* Virtualized list */}
           <List
-            height={780} // Height of the container
+            height={780}
             itemCount={issues.length}
-            itemSize={175} // Height of each item
-            width="100%" // Full width
+            itemSize={175}
+            width="100%"
           >
             {renderRow}
           </List>
 
-          {/* Infinite scrolling */}
           <InView
             as="div"
             style={{ padding: '2px' }}
-            onChange={(inView, _) =>
-              inView && getNextPage()
-            }
+            onChange={(inView, _) => inView && getNextPage()}
           />
         </>
       )}
     </div>
   );
-};
+}
