@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice } from '@reduxjs/toolkit';
+import { CustomError } from 'shared/api/types';
 import { LogsState } from './types';
 import { fetchLogs } from './logsThunk';
-import { CustomError } from 'shared/api/types';
 
 const initialState: LogsState = {
   logs: [],
@@ -31,7 +31,8 @@ const logsSlice = createSlice({
       })
       .addCase(fetchLogs.rejected, (state, action) => {
         state.status = 'failed';
-         state.error = (action.payload as CustomError)?.message || 'Failed to fetch issues';
+        state.error =
+          (action.payload as CustomError)?.message || 'Failed to fetch issues';
       });
   },
 });

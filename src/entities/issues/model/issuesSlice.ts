@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchIssue, fetchIssues } from './issuesThunk';
-import { IssueSearchParams, IssuesState } from './types';
 import { CustomError } from 'shared/api/types';
+import { IssueSearchParams, IssuesState } from './types';
+import { fetchIssue, fetchIssues } from './issuesThunk';
 
 const initialState: IssuesState = {
   issues: [],
@@ -36,7 +36,8 @@ const issuesSlice = createSlice({
       })
       .addCase(fetchIssues.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = (action.payload as CustomError)?.message || 'Failed to fetch issues';
+        state.error =
+          (action.payload as CustomError)?.message || 'Failed to fetch issues';
       })
 
       .addCase(fetchIssue.pending, (state) => {
@@ -49,7 +50,8 @@ const issuesSlice = createSlice({
       })
       .addCase(fetchIssue.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = (action.payload as CustomError)?.message || 'Failed to fetch issues';
+        state.error =
+          (action.payload as CustomError)?.message || 'Failed to fetch issues';
       });
   },
 });

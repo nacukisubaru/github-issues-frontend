@@ -7,6 +7,7 @@ import { useCallback, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import { InView } from 'react-intersection-observer';
 import { FixedSizeList as List } from 'react-window';
+import styles from './githubIssuesList.module.scss';
 import { GithubIssueItem } from '../github-issue-item/githubIssueItem';
 
 export function GithubIssuesList() {
@@ -35,36 +36,41 @@ export function GithubIssuesList() {
   }: {
     index: number;
     style: React.CSSProperties;
-  }) => (
-    <InView
-      as="div"
-      style={{ padding: '2px' }}
-      onChange={(inView, _) => inView && getNextPage()}
-    >
-      <div style={style}>
+  }) => {
+    const issue = issues[index];
+    return (
+      <div style={{ ...style, marginBottom: '10px' }}>
         <GithubIssueItem
-          id={issues[index].number}
-          title={issues[index].title}
-          status={issues[index].state}
-          date={issues[index].created_at}
-          author={issues[index].user.login}
-          redirectLink={getRedirectLink(issues[index].number)}
+          id={issue.number}
+          title={issue.title}
+          status={issue.state}
+          date={issue.created_at}
+          author={issue.user.login}
+          redirectLink={getRedirectLink(issue.number)}
         />
       </div>
-    </InView>
-  );
+    );
+  };
 
   return (
-    <div>
+    <div className={styles['issues-list']}>
       {issues.length > 0 && (
-        <List
-          height={780}
-          itemCount={issues.length}
-          itemSize={150}
-          width="100%"
-        >
-          {renderRow}
-        </List>
+        <div>
+          <List
+            height={780}
+            itemCount={issues.length}
+            itemSize={200}
+            width="100%"
+          >
+            {renderRow}
+          </List>
+
+          <InView
+            as="div"
+            style={{ padding: '2px' }}
+            onChange={(inView, _) => inView && getNextPage()}
+          />
+        </div>
       )}
     </div>
   );
