@@ -4,8 +4,7 @@ import { Log } from './types';
 
 export const fetchLogs = createAsyncThunk<
   Log[],
-  { page: number },
-  { rejectValue: { message: string } }
+  { page: number }
 >('logs/fetchLogs', async (params, { rejectWithValue }) =>
   thunkAxiosRequest({
     path: `/logger/get-logs/${params.page}`,

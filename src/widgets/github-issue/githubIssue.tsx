@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from 'shared/lib/store';
 import { selectIssue } from 'entities/issues/model/selector';
 
 interface GithubIssueProps {
-  user: string;
-  repo: string;
-  id: string;
+  user: string | null;
+  repo: string | null;
+  id: string | undefined;
 }
 
 export const GithubIssue: FC<GithubIssueProps> = function GithubIssue({
