@@ -59,5 +59,8 @@
   ],
   "exclude": [
     "node_modules"
+  ],
+  "files": [
+    "postcss.config.js",
   ]
 }
