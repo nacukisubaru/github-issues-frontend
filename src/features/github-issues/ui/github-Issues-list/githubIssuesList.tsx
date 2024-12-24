@@ -9,7 +9,7 @@ import { InView } from 'react-intersection-observer';
 import { FixedSizeList as List } from 'react-window';
 import { useNavigate } from 'react-router-dom';
 import styles from './githubIssuesList.module.scss';
-import GithubIssueItem from '../github-issue-item/githubIssueItem';
+import { GithubIssueItem } from '../github-issue-item/githubIssueItem';
 
 export function GithubIssuesList() {
   const issues = useAppSelector(selectIssues);
