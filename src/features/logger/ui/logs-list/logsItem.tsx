@@ -9,18 +9,22 @@ interface LogsItemProps {
   onClick?: () => void;
 }
 
-export const LogsItem: React.FC<LogsItemProps> = ({
+export const LogsItem: React.FC<LogsItemProps> = function LogsItem({
   ip,
   method,
   path,
   timestamp,
   onClick,
-}) => {
+}) {
   return (
     <div className={styles.logCard}>
-      <a className={styles.logCard__header} onClick={onClick}>
+      <button
+        className={styles.logCard__header}
+        onClick={onClick}
+        aria-label={`Click to view details of ${method} ${path}`}
+      >
         {method} {path}
-      </a>
+      </button>
       <div className={styles.logCard__info}>
         <div className="info-item">
           IP: <span className={styles.logCard__ip}>{ip}</span>
@@ -32,7 +36,7 @@ export const LogsItem: React.FC<LogsItemProps> = ({
           Path: <span className={styles.logCard__path}>{path}</span>
         </div>
         <div className="info-item">
-          Timestamp:{' '}
+          Timestamp:
           <span className={styles.logCard__timestamp}>{timestamp}</span>
         </div>
       </div>

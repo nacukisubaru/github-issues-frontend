@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import styles from './githubIssueComment.module.scss';
 
 interface GithubIssueCommentProps {
@@ -8,12 +7,12 @@ interface GithubIssueCommentProps {
   createdAt: string;
 }
 
-export const GithubIssueComment: FC<GithubIssueCommentProps> = ({
+export function GithubIssueComment({
   user,
   avatarUrl,
   text,
   createdAt,
-}) => {
+}: GithubIssueCommentProps) {
   return (
     <div className={styles['github-issue-comment']}>
       <img
@@ -25,11 +24,12 @@ export const GithubIssueComment: FC<GithubIssueCommentProps> = ({
         <div className={styles['github-issue-comment__header']}>
           <span className={styles['github-issue-comment__user']}>{user}</span>
           <span className={styles['github-issue-comment__metadata']}>
-            commented on {new Date(createdAt).toLocaleString()}
+            commented on
+            {new Date(createdAt).toLocaleString()}
           </span>
         </div>
         <div className={styles['github-issue-comment__body']}>{text}</div>
       </div>
     </div>
   );
-};
+}

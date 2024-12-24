@@ -16,15 +16,13 @@ export function IssueDetail() {
 
   useEffect(() => {
     registerReducer('issuesReducer', issuesReducer);
-  }, []);
+  }, [registerReducer]);
 
   return (
-    <>
-      <Dashboard>
-        {loadedReducers.includes('issuesReducer') && (
-          <GithubIssue user={user} repo={repo} id={id} />
-        )}
-      </Dashboard>
-    </>
+    <Dashboard>
+      {loadedReducers.includes('issuesReducer') && (
+        <GithubIssue user={user} repo={repo} id={id} />
+      )}
+    </Dashboard>
   );
 }

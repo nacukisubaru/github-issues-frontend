@@ -21,7 +21,6 @@ export const GithubIssue: FC<GithubIssueProps> = function GithubIssue({
   useEffect(() => {
     const fetch = async () => {
       if (user && repo && id) {
-        console.log({ user, repo, id });
         dispatch(
           fetchIssue({
             user,
@@ -36,7 +35,7 @@ export const GithubIssue: FC<GithubIssueProps> = function GithubIssue({
   }, [dispatch, user, repo, id]);
 
   return (
-    <>
+    <div>
       {issue && (
         <GithubIssueDetail
           title={issue?.title}
@@ -46,6 +45,6 @@ export const GithubIssue: FC<GithubIssueProps> = function GithubIssue({
           comments={issue?.commentsList}
         />
       )}
-    </>
+    </div>
   );
 };

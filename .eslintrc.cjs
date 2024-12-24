@@ -12,7 +12,7 @@ module.exports = {
     "airbnb-typescript",
     "plugin:import/typescript"
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  ignorePatterns: ["dist", ".eslintrc.cjs", "postcss.config.js", "tailwind.config.js"],
   parser: "@typescript-eslint/parser",
   settings: {
     "import/resolver": {
@@ -27,7 +27,8 @@ module.exports = {
     "project": "./tsconfig.json"
   },
   plugins: [
-    "react-refresh"
+    "react-refresh",
+    "prettier"
   ],
   rules: {
     "react-refresh/only-export-components": [
@@ -45,6 +46,7 @@ module.exports = {
     "@typescript-eslint/camelcase": "off",
     "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
+    "operator-linebreak": ["off"],
     "object-curly-newline": [
       "error", 
       {

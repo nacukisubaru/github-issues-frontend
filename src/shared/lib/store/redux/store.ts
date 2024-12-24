@@ -1,6 +1,6 @@
 import { combineReducers, configureStore, Reducer } from '@reduxjs/toolkit';
-import { loadedReducersReducer } from '../model/loadedReducersSlice';
 import { logsReducer } from 'features/logger';
+import { loadedReducersReducer } from '../model/loadedReducersSlice';
 
 const asyncReducers: Record<string, Reducer> = {
   loadedReducersReducer,
@@ -16,7 +16,6 @@ export const store = makeStore();
 
 export const loadReducer = (name: string, reducer: Reducer) => {
   if (asyncReducers[name]) {
-    console.warn(`Reducer с именем "${name}" уже существует.`);
     return;
   }
 

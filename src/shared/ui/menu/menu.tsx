@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
-import styles from './menu.module.scss';
 import { NavLink } from 'react-router-dom';
+import styles from './menu.module.scss';
 
 interface MenuItem {
   id: number;
@@ -19,7 +19,6 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
 
   return (
     <>
-      {/* Кнопка для открытия мобильного меню */}
       <button
         className={styles.menu__toggle}
         onClick={toggleMobileMenu}
@@ -28,7 +27,6 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
         ☰
       </button>
 
-      {/* Меню */}
       <nav
         className={`${styles.menu} ${isMobileMenuOpen ? styles.menu_open : ''}`}
       >
@@ -42,7 +40,7 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
                     isActive ? styles.menu__link_active : ''
                   }`
                 }
-                onClick={() => setIsMobileMenuOpen(false)} // Закрытие меню после клика
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
               </NavLink>
@@ -51,9 +49,8 @@ export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
         </ul>
       </nav>
 
-      {/* Затенение фона при открытом меню на мобильных */}
       {isMobileMenuOpen && (
-        <div className={styles.menu__overlay} onClick={toggleMobileMenu}></div>
+        <div className={styles.menu__overlay} onClick={toggleMobileMenu} />
       )}
     </>
   );

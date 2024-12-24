@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { InView } from 'react-intersection-observer';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
-import { LogsItem } from './logsItem';
 import { fetchLogs } from 'features/logger/model/logsThunk';
 import { selectLogs } from 'features/logger/model/selector';
+import { LogsItem } from './logsItem';
 
 export function LogsList() {
   const logs = useAppSelector(selectLogs);

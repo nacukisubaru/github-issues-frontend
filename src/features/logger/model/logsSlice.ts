@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import { createSlice } from '@reduxjs/toolkit';
 import { LogsState } from './types';
 import { fetchLogs } from './logsThunk';

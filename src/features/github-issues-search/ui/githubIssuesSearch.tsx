@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import styles from './githubIssuesSearch.module.scss';
 import { useAddDynamicReducer, useAppDispatch } from 'shared/lib/store';
 import {
   fetchIssues,
@@ -8,6 +7,7 @@ import {
   issuesReducer,
   resetIssues,
 } from 'entities/issues';
+import styles from './githubIssuesSearch.module.scss';
 
 type FormData = {
   username: string;
@@ -39,6 +39,7 @@ export const GithubIssuesSearch: FC = function GithubIssuesSearch() {
         type="text"
         placeholder="Username"
         className={styles['github-issues-search__input']}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...register('username', { required: 'Username is required' })}
       />
       {errors.username && (
@@ -51,6 +52,7 @@ export const GithubIssuesSearch: FC = function GithubIssuesSearch() {
         type="text"
         placeholder="Repository"
         className={styles['github-issues-search__input']}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...register('repository', { required: 'Repository is required' })}
       />
       {errors.repository && (

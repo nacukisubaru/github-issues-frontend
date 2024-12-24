@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Reducer } from '@reduxjs/toolkit';
 import { loadReducer } from '../redux/store';
 import { addReducer } from '../model/loadedReducersSlice';
@@ -8,10 +9,13 @@ export const useAddDynamicReducer = () => {
   const loadedReducers = useAppSelector(selectLoadedReducers);
   const dispatch = useAppDispatch();
 
-  const registerReducer = (name: string, reducer: Reducer) => {
-    dispatch(addReducer(name));
-    loadReducer(name, reducer);
-  };
+  const registerReducer = useCallback(
+    (name: string, reducer: Reducer) => {
+      dispatch(addReducer(name));
+      loadReducer(name, reducer);
+    },
+    [dispatch],
+  );
 
   return {
     registerReducer,

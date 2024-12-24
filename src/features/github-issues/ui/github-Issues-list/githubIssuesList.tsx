@@ -5,11 +5,11 @@ import {
 } from 'entities/issues';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'shared/lib/store';
-import GithubIssueItem from '../github-issue-item/githubIssueItem';
-import styles from './githubIssuesList.module.scss';
 import { InView } from 'react-intersection-observer';
 import { FixedSizeList as List } from 'react-window';
 import { useNavigate } from 'react-router-dom';
+import styles from './githubIssuesList.module.scss';
+import GithubIssueItem from '../github-issue-item/githubIssueItem';
 
 export function GithubIssuesList() {
   const issues = useAppSelector(selectIssues);
@@ -42,7 +42,6 @@ export function GithubIssuesList() {
     style: React.CSSProperties;
   }) => {
     const issue = issues[index];
-    console.log(`Rendering issue: ${issue.number}`);
     return (
       <div className="mb-5" style={style}>
         <GithubIssueItem
