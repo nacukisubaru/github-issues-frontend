@@ -3,6 +3,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAddDynamicReducer } from 'shared/lib/store';
 import { issuesReducer } from 'entities/issues';
+import { Dashboard } from 'widgets/dashboard';
 
 export function IssueDetail() {
   const { id } = useParams();
@@ -19,9 +20,11 @@ export function IssueDetail() {
 
   return (
     <>
-      {loadedReducers.includes('issuesReducer') && (
-        <GithubIssue user={user} repo={repo} id={id} />
-      )}
+      <Dashboard>
+        {loadedReducers.includes('issuesReducer') && (
+          <GithubIssue user={user} repo={repo} id={id} />
+        )}
+      </Dashboard>
     </>
   );
 }
