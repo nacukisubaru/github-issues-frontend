@@ -26,21 +26,21 @@ export const LogsItem: React.FC<LogsItemProps> = function LogsItem({
         {path}
       </div>
       <div className={styles.logCard__info}>
-        <div className="info-item">
-          IP:
+        <div className={styles['info-item']}>
+          <span className='mr-1'>IP:</span>
           <span className={styles.logCard__ip}>{ip}</span>
         </div>
-        <div className="info-item">
-          Method:
+        <div className={styles['info-item']}>
+          <span className='mr-1'>Method:</span>
           <span className={styles.logCard__method}>{method}</span>
         </div>
-        <div className="info-item">
-          Path:
+        <div className={styles['info-item']}>
+          <span className='mr-1'>Path:</span>
           <span className={styles.logCard__path}>{path}</span>
         </div>
-        <div className="info-item">
-          Timestamp:
-          <span className={styles.logCard__timestamp}>{timestamp}</span>
+        <div className={styles['info-item']}>
+          <span className='mr-1'>Timestamp:</span>
+          <span className={styles.logCard__timestamp}>{new Date(timestamp).toLocaleString()}</span>
         </div>
       </div>
     </div>

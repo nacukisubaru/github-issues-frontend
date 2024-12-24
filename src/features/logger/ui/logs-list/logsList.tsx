@@ -22,12 +22,14 @@ export function LogsList() {
   return (
     <>
       {logs.map((log) => (
-        <LogsItem
-          ip={log.ip}
-          method={log.method}
-          path={log.path}
-          timestamp={log.timestamp}
-        />
+        <div className='mb-5'>
+          <LogsItem
+            ip={log.ip}
+            method={log.method}
+            path={log.path}
+            timestamp={log.timestamp}
+          />
+        </div>
       ))}
 
       {logs.length > 0 && (
