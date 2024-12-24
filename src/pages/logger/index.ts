@@ -1,1 +1,1 @@
-export { Logs } from "./logs";
+export { Logs } from './logs';

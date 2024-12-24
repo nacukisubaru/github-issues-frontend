@@ -1,4 +1,3 @@
-
 export interface Log {
   ip: string;
   method: string;

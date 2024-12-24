@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { LogsState } from "./types";
-import { fetchLogs } from "./logsThunk";
+import { createSlice } from '@reduxjs/toolkit';
+import { LogsState } from './types';
+import { fetchLogs } from './logsThunk';
 
 const initialState: LogsState = {
   logs: [],

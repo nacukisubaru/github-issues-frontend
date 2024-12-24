@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { InView } from "react-intersection-observer";
-import { useAppDispatch, useAppSelector } from "shared/lib/store";
-import { LogsItem } from "./logsItem";
-import { fetchLogs } from "features/logger/model/logsThunk";
-import { selectLogs } from "features/logger/model/selector";
+import { useEffect, useState } from 'react';
+import { InView } from 'react-intersection-observer';
+import { useAppDispatch, useAppSelector } from 'shared/lib/store';
+import { LogsItem } from './logsItem';
+import { fetchLogs } from 'features/logger/model/logsThunk';
+import { selectLogs } from 'features/logger/model/selector';
 
 export function LogsList() {
   const logs = useAppSelector(selectLogs);
@@ -19,12 +19,11 @@ export function LogsList() {
     dispatch(fetchLogs({ page: 1 }));
   }, []);
 
-
   return (
     <>
-      {logs.map(log => 
+      {logs.map((log) => (
         <LogsItem {...log} />
-      )}
+      ))}
 
       {logs.length > 0 && (
         <InView

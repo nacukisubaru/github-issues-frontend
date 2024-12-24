@@ -32,10 +32,10 @@ export const LogsItem: React.FC<LogsItemProps> = ({
           Path: <span className={styles.logCard__path}>{path}</span>
         </div>
         <div className="info-item">
-          Timestamp: <span className={styles.logCard__timestamp}>{timestamp}</span>
+          Timestamp:{' '}
+          <span className={styles.logCard__timestamp}>{timestamp}</span>
         </div>
       </div>
     </div>
   );
 };
-

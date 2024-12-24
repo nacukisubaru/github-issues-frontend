@@ -1,13 +1,11 @@
-import { FC, ReactNode } from "react";
-import { Menu } from "shared/ui/menu";
+import { FC, ReactNode } from 'react';
+import { Menu } from 'shared/ui/menu';
 
 interface DasboardProps {
   children: ReactNode;
 }
 
-export const Dashboard: FC<DasboardProps> = function Dashboard({
-  children
-}) {
+export const Dashboard: FC<DasboardProps> = function Dashboard({ children }) {
   const menuItems = [
     { id: 1, label: 'Issues', path: '/issues' },
     { id: 2, label: 'Logs', path: '/logs' },
@@ -16,9 +14,7 @@ export const Dashboard: FC<DasboardProps> = function Dashboard({
   return (
     <>
       {children}
-      <Menu 
-        menuItems={menuItems}
-      />
+      <Menu menuItems={menuItems} />
     </>
   );
-}
+};

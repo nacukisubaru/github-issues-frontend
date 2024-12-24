@@ -12,10 +12,7 @@ interface MenuProps {
   menuItems: MenuItem[];
 }
 
-export const Menu: FC<MenuProps> = function Menu({
-  menuItems
-}) {
-
+export const Menu: FC<MenuProps> = function Menu({ menuItems }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -33,8 +30,7 @@ export const Menu: FC<MenuProps> = function Menu({
 
       {/* Меню */}
       <nav
-        className={`${styles.menu} ${isMobileMenuOpen ? styles.menu_open : ''
-          }`}
+        className={`${styles.menu} ${isMobileMenuOpen ? styles.menu_open : ''}`}
       >
         <ul className={styles.menu__list}>
           {menuItems.map((item) => (
@@ -42,7 +38,8 @@ export const Menu: FC<MenuProps> = function Menu({
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `${styles.menu__link} ${isActive ? styles.menu__link_active : ''
+                  `${styles.menu__link} ${
+                    isActive ? styles.menu__link_active : ''
                   }`
                 }
                 onClick={() => setIsMobileMenuOpen(false)} // Закрытие меню после клика
@@ -55,7 +52,9 @@ export const Menu: FC<MenuProps> = function Menu({
       </nav>
 
       {/* Затенение фона при открытом меню на мобильных */}
-      {isMobileMenuOpen && <div className={styles.menu__overlay} onClick={toggleMobileMenu}></div>}
+      {isMobileMenuOpen && (
+        <div className={styles.menu__overlay} onClick={toggleMobileMenu}></div>
+      )}
     </>
   );
 };
